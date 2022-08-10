@@ -9,9 +9,10 @@ namespace http
 	class RequestHeader
 	{
 	public:
-		RequestHeader(const char* request_headers_raw);
+		RequestHeader(char* request_headers_raw);
 		const std::map<std::string, std::string> get() const;
 	protected:
+		void append(char* line);
 		std::map<std::string, std::string> fields_;
 	};
 };

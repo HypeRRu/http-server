@@ -2,7 +2,7 @@
 
 using namespace http;
 
-Request::Request(const char* request_raw):
+Request::Request(char* request_raw):
 	parser_(request_raw),
 	request_line_(parser_.get_request_line_raw()),
 	request_header_(parser_.get_request_headers_raw()),

@@ -10,7 +10,7 @@ namespace http
 	class Request
 	{
 	public:
-		Request(const char* request_raw);
+		Request(char* request_raw);
 
 		const RequestLine& request_line() const;
 		const RequestHeader& header() const;
