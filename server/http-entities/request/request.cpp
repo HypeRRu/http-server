@@ -73,8 +73,8 @@ void Request::dump() const
 	}
 	else
 	{
-		for (auto [fname, fvalue]: request_header().get())
-			std::cout << fname << ":\t" << fvalue << std::endl;
+		for (std::pair<std::string, std::string> field: request_header().get())
+			std::cout << field.first << ":\t" << field.second << std::endl;
 	}
 	std::cout << std::endl;
 
@@ -84,8 +84,8 @@ void Request::dump() const
 		std::cout << "(Empty)" << std::endl;
 	} else
 	{
-		for (auto [fname, fvalue]: entity_header().get())
-			std::cout << fname << ":\t" << fvalue << std::endl;
+		for (std::pair<std::string, std::string> field: entity_header().get())
+			std::cout << field.first << ":\t" << field.second << std::endl;
 	}
 	std::cout << std::endl;
 
