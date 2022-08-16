@@ -16,6 +16,8 @@ namespace http
 		const std::string& get_resource_path() const;
 		const std::string& get_query() const;
 		const std::string& get_fragment() const;
+
+		const std::string& get() const;
 	protected:
 		void parse(char* uri);
 		void parse_protocol(char** resource);
@@ -30,6 +32,8 @@ namespace http
 		std::string resource_path_;
 		std::string query_;
 		std::string fragment_;
+
+		std::string full_uri_;
 	};
 };
 

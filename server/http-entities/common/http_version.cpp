@@ -31,8 +31,11 @@ void HttpVersion::init_version()
 {
 	major_ = static_cast<int>(version_);
 	float rem = version_ - major_;
-	while (rem < 1)
-		rem *= 10;
+	if (rem != 0)
+	{
+		while (rem < 1)
+			rem *= 10;
+	}
 	minor_ = static_cast<int>(rem);
 }
 

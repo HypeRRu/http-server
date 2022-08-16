@@ -6,6 +6,8 @@ using namespace http;
 
 Uri::Uri(const char* uri)
 {
+	full_uri_ = uri;
+
 	char* mod_uri = new char[strlen(uri) + 1];
 	mod_uri[strlen(uri) + 1] = '\0';
 	strncpy(mod_uri, uri, strlen(uri));
@@ -47,6 +49,10 @@ const std::string& Uri::get_fragment() const
 	return fragment_;
 }
 
+const std::string& Uri::get() const
+{
+	return full_uri_;
+}
 
 void Uri::parse(char* uri)
 {
