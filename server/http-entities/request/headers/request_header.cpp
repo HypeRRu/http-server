@@ -27,6 +27,23 @@ void RequestHeader::append_line(char *line)
 	);
 }
 
+void RequestHeader::append(
+	const std::string &field_name, 
+	const std::string &field_value
+)
+{
+	/* TODO: check for existing field-names */
+	fields_.emplace(field_name, field_value);
+}
+
+bool RequestHeader::remove(const std::string& field_name)
+{
+	if (fields_.find(field_name) == fields_.end())
+		return false;
+	fields_.erase(field_name);
+	return true;
+}
+
 const std::map<std::string, std::string>& RequestHeader::get() const
 {
 	return fields_;

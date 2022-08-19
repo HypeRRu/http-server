@@ -4,10 +4,7 @@
 
 using namespace http;
 
-HttpVersion::HttpVersion(const char* version):
-	version_{0},
-	major_{0},
-	minor_{0}
+void HttpVersion::parse_string(const char* version)
 {
 	if (!version)
 		return;
@@ -17,13 +14,32 @@ HttpVersion::HttpVersion(const char* version):
 
 	version += 5;
 	version_ = atof(version);
+}
 
+HttpVersion::HttpVersion(const char* version):
+	version_{0},
+	major_{0},
+	minor_{0}
+{
+	parse_string(version);
 	init_version();
 }
 
-HttpVersion::HttpVersion(const float version):
+HttpVersion::HttpVersion(float version):
 	version_{version}
 {
+	init_version();
+}
+
+void HttpVersion::update(const char* version)
+{
+	parse_string(version);
+	init_version();
+}
+
+void HttpVersion::update(float version)
+{
+	version_ = version;
 	init_version();
 }
 

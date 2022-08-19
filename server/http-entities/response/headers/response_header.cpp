@@ -1,11 +1,11 @@
-#include "entity_header.h"
+#include "response_header.h"
 #include <cstring>
-#include <cctype>
 
 using namespace http::headers;
 
-void EntityHeader::append_line(char* line)
+void ResponseHeader::append_line(char *line)
 {
+	/* TODO: check for existing field-names */
 	char* field_name = line;
 	/* separate field and it's value */
 	char* value = strpbrk(line, ":");
@@ -20,7 +20,6 @@ void EntityHeader::append_line(char* line)
 		*line = tolower(*line);
 		++line;
 	}
-	/* TODO: errors check */
 	/* insert line */
 	fields_.emplace(
 		field_name,
@@ -28,16 +27,16 @@ void EntityHeader::append_line(char* line)
 	);
 }
 
-void EntityHeader::append(
+void ResponseHeader::append(
 	const std::string &field_name, 
 	const std::string &field_value
 )
 {
-	/* TODO: errors check */
+	/* TODO: check for existing field-names */
 	fields_.emplace(field_name, field_value);
 }
 
-bool EntityHeader::remove(const std::string& field_name)
+bool ResponseHeader::remove(const std::string& field_name)
 {
 	if (fields_.find(field_name) == fields_.end())
 		return false;
@@ -45,12 +44,12 @@ bool EntityHeader::remove(const std::string& field_name)
 	return true;
 }
 
-const std::map<std::string, std::string>& EntityHeader::get() const
+const std::map<std::string, std::string>& ResponseHeader::get() const
 {
 	return fields_;
 }
 
-const std::string& EntityHeader::get(const std::string& key) const
+const std::string& ResponseHeader::get(const std::string& key) const
 {
 	return fields_.at(key);
 }

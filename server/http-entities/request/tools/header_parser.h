@@ -16,9 +16,6 @@ namespace http
 				headers::HttpHeader* request_header,
 				headers::HttpHeader* entity_header = nullptr
 			);
-		protected:
-			bool is_header_general(const char* field_name) const;
-			bool is_header_entity(const char* field_name) const;
 		};
 	};
 };

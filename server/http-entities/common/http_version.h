@@ -7,12 +7,16 @@ namespace http
 	{
 	public:
 		HttpVersion(const char* version);
-		HttpVersion(const float version);
+		HttpVersion(float version = 1.0);
+
+		void update(const char* version);
+		void update(float version);
 
 		const float get() const;
 		const int major() const;
 		const int minor() const;
 	protected:
+		void parse_string(const char* version);
 		void init_version();
 
 		float version_;

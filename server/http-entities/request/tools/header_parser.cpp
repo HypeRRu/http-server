@@ -1,4 +1,5 @@
 #include "header_parser.h"
+#include "../../common/tools/header_type_define.h"
 #include <cstring>
 #include <cctype>
 
@@ -34,44 +35,24 @@ HeaderParser::HeaderParser(
 			for (char* fname = field_name; *fname != '\0'; ++fname)
 				*fname = tolower(*fname);
 			/* check which header we have */
-			if (is_header_general(field_name))
+			if (tools::HeaderTypeDefine::is_header_general(field_name))
 			{
 				if (general_header)
 					general_header->append_line(line);
 			}
-			else if (is_header_entity(field_name))
-			{
-				if (entity_header)
-					entity_header->append_line(line);
-			}
-			else
+			else if (tools::HeaderTypeDefine::is_header_request(field_name))
 			{
 				if (request_header)
 					request_header->append_line(line);
+			}
+			else
+			{
+				if (entity_header)
+					entity_header->append_line(line);
 			}
 			delete [] field_name;
 		}	
 		/* get new line pointer */
 		line = line_end;
 	}
-}
-
-bool HeaderParser::is_header_general(const char* field_name) const
-{
-	return (
-		!strcmp(field_name, "date") ||
-		!strcmp(field_name, "pragma")
-	);
-}
-
-bool HeaderParser::is_header_entity(const char* field_name) const
-{
-	return (
-		!strcmp(field_name, "allow") ||
-		!strcmp(field_name, "content-encoding") ||
-		!strcmp(field_name, "content-length") ||
-		!strcmp(field_name, "content-type") ||
-		!strcmp(field_name, "expires") ||
-		!strcmp(field_name, "last-modified")
-	);
 }
