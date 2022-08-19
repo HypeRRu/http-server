@@ -160,8 +160,12 @@ const headers::HttpHeader& Response::get_header(headers::HeaderType htype)
 
 void Response::set_content_type(const std::string& type)
 {
-	entity_header_.remove("content-type");
-	entity_header_.append("content-type", type);
+	if (type != get_content_type())
+	{
+		need_update();
+		entity_header_.remove("content-type");
+		entity_header_.append("content-type", type);
+	}	
 }
 
 const std::string& Response::get_content_type() const
@@ -176,6 +180,16 @@ const std::string& Response::get_content_type() const
 
 void Response::set_body(char* body, size_t body_length)
 {
+	if (response_body_length_ == body_length)
+	{
+		size_t i = 0;
+		for (i = 0; i < body_length; ++i)
+			if (response_body_[i] != body[i])
+				break;
+		if (i == body_length)
+			return;
+	}
+
 	need_update();
 	delete [] response_body_;
 	response_body_ = new char[body_length + 1];
@@ -254,4 +268,3 @@ const std::stringstream& Response::get()
 	has_chages_ = false;
 	return raw_;
 }
-

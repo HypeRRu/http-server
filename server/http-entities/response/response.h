@@ -13,8 +13,6 @@
 #include "../common/http_version.h"
 #include "status.h"
 
-/* TODO: Content-Type setter/getter */
-
 namespace http
 {
 	class Response
@@ -22,7 +20,6 @@ namespace http
 	public:
 		Response();
 		~Response();
-		/* mb need a destructor */
 		void set_http_version(float version);
 		const HttpVersion& get_http_version() const;
 
@@ -61,7 +58,7 @@ namespace http
 		/* Body */
 		char* response_body_;
 		size_t response_body_length_;
-		std::string default_content_type_;
+		const std::string default_content_type_;
 		/* String representation */
 		std::stringstream raw_;
 		/* Changes flag */
