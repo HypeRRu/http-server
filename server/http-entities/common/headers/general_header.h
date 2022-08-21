@@ -19,7 +19,7 @@ namespace http
 			void set_date(const char* date);
 			void set_date(const std::string& date);
 			void set_date(const struct tm& date_struct);
-			const std::tm& get_date_struct() const;
+			const struct tm& get_date_struct() const;
 			const std::string& get_date() const;
 
 			void add_pragma_directive(const char* pragma_directive);

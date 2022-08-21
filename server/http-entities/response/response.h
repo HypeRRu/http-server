@@ -1,7 +1,6 @@
 #ifndef HTTP_ENTITIES_RESPONSE_RESPONSE_H
 #define HTTP_ENTITIES_RESPONSE_RESPONSE_H
 
-#include <cstddef>
 #include <string>
 #include <map>
 #include <sstream>
@@ -41,8 +40,8 @@ namespace http
 		void set_content_type(const std::string& type);
 		const std::string& get_content_type() const;
 
-		void set_body(char* body, size_t body_length);
-		char* get_body() const;
+		void set_body(const char* body, size_t body_length);
+		const char* get_body() const;
 		size_t get_body_length() const;
 
 		const std::stringstream& get();

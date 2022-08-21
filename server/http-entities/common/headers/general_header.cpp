@@ -105,7 +105,7 @@ void GeneralHeader::add_pragma_directive(const std::string& pragma_directive)
 	add_pragma_directive(pragma_directive.c_str());
 }
 
-const std::tm& GeneralHeader::get_date_struct() const
+const struct tm& GeneralHeader::get_date_struct() const
 {
 	return date_;
 }

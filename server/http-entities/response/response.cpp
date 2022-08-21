@@ -178,7 +178,7 @@ const std::string& Response::get_content_type() const
 	return entity_header_.get().at("content-type");
 }
 
-void Response::set_body(char* body, size_t body_length)
+void Response::set_body(const char* body, size_t body_length)
 {
 	if (response_body_length_ == body_length)
 	{
@@ -200,7 +200,7 @@ void Response::set_body(char* body, size_t body_length)
 	response_body_length_ = body_length;
 }
 
-char* Response::get_body() const
+const char* Response::get_body() const
 {
 	return response_body_;
 }

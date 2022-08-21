@@ -9,16 +9,18 @@ Method::Method(const char* m):
 	/* method name is case-sensitive */
 	if (method_name_ == "GET")
 		method_ = HttpMethod::GET;
+	else if (method_name_ == "HEAD")
+		method_ = HttpMethod::HEAD;
 	else if (method_name_ == "POST")
 		method_ = HttpMethod::POST;
-	else if (method_name_ == "PUT")
+	/*else if (method_name_ == "PUT")
 		method_ = HttpMethod::PUT;
 	else if (method_name_ == "DELETE")
 		method_ = HttpMethod::DELETE;
 	else if (method_name_ == "LINK")
 		method_ = HttpMethod::LINK;
 	else if (method_name_ == "UNLINK")
-		method_ = HttpMethod::UNLINK;
+		method_ = HttpMethod::UNLINK;*/
 }
 
 const std::string& Method::get_name() const

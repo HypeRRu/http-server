@@ -8,11 +8,12 @@ namespace http
 	enum class HttpMethod
 	{
 		GET,
+		HEAD,
 		POST,
-		PUT,
+		/*PUT,
 		DELETE,
 		LINK,
-		UNLINK,
+		UNLINK,*/
 		UNSUPPORTED
 	};
 

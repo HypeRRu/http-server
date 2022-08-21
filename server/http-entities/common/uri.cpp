@@ -9,7 +9,7 @@ Uri::Uri(const char* uri)
 	full_uri_ = uri;
 
 	char* mod_uri = new char[strlen(uri) + 1];
-	mod_uri[strlen(uri) + 1] = '\0';
+	mod_uri[strlen(uri)] = '\0';
 	strncpy(mod_uri, uri, strlen(uri));
 
 	parse(mod_uri);
