@@ -39,18 +39,17 @@ int main(int argc, char *argv[])
 	daemon(1, 0);
 	/* setup server */
 	core::Server server(ip, port);
-	/* change working directory (root permissions required) */
+	/* change working and root directory (root permissions required) */
 	if (work_dir)
 	{
 		if (chroot(work_dir) == -1)
 		{
-			perror("chroot");
-			return 1;
-		}
-		if (chdir("/") == -1)
+			/* if no permissions, change just working directory */
+			chdir(work_dir);
+		} else
 		{
-			perror("chdir");
-			return 1;
+			/* root directory changed, set working directory */
+			chdir("/");
 		}
 	}
 	std::cout << "Is valid: " << server.is_valid() << std::endl;

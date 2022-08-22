@@ -2,21 +2,19 @@
 CC          := g++
 
 #The Target Binary Program
-TARGET      := server
+TARGET      := final
 
 #The Directories, Source, Includes, Objects, Binary and Resources
-# BACKENDDIR	:= backend
-# FRONTENDDIR	:= frontend
 SRCDIR		:= server
 INCDIR      := server
 BUILDDIR    := obj
-TARGETDIR   := bin
+TARGETDIR   := .
 SRCEXT      := cpp
 DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -std=c++11 -ggdb -O0 -Wall
+CFLAGS      := -std=c++11 -O3
 LIB         := 
 INC         := -I$(INCDIR) -I/usr/local/include
 INCDEP      := -I$(INCDIR)
@@ -28,7 +26,6 @@ SOURCES     := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS     := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
 
 #Default Make
-# all: resources $(TARGET)
 all: directories $(TARGET)
 
 #Remake
