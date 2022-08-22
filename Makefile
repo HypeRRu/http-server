@@ -8,7 +8,6 @@ TARGET      := final
 SRCDIR		:= server
 INCDIR      := server
 BUILDDIR    := obj
-TARGETDIR   := .
 SRCEXT      := cpp
 DEPEXT      := d
 OBJEXT      := o
@@ -33,7 +32,6 @@ remake: cleaner all
 
 #Make the Directories
 directories:
-	@mkdir -p $(TARGETDIR)
 	@mkdir -p $(BUILDDIR)
 
 #Clean only Objecst
@@ -42,14 +40,14 @@ clean:
 
 #Full Clean, Objects and Binaries
 cleaner: clean
-	@$(RM) -rf $(TARGETDIR)
+	@$(RM) -rf $(TARGET)
 
 #Pull in dependency info for *existing* .o files
 -include $(OBJECTS:.$(OBJEXT)=.$(DEPEXT))
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+	$(CC) -o $(TARGET) $^ $(LIB)
 
 #Compile
 $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
