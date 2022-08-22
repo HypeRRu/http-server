@@ -37,8 +37,6 @@ http::Response* Processor::process_request(const http::Request& request)
 	);
 	if (stat_result == -1)
 	{
-		perror("stat");
-		std::cout << request.request_line().uri().get_resource_path() << std::endl;
 		/* file not found */
 		response->set_status_code(404);
 		response->set_reason_phrase("Not found");
@@ -49,6 +47,8 @@ http::Response* Processor::process_request(const http::Request& request)
 	{
 		case http::HttpMethod::GET:
 		{
+			response->set_status_code(200);
+			response->set_reason_phrase("OK");
 			/* get last modification date */
 			struct tm* last_mod = gmtime(
 				&statbuf.st_mtim.tv_sec

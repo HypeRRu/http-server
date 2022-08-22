@@ -71,7 +71,7 @@ void Response::add_header(
 {
 	/* to lower case */
 	std::string fname;
-	fname.resize(field_name.size() + 1, '\0');
+	fname.resize(field_name.size(), '\0');
 	for (size_t i = 0; i < field_name.size(); ++i)
 		fname[i] = tolower(field_name[i]);
 	switch (htype)
@@ -107,7 +107,7 @@ bool Response::remove_header(
 {
 	/* to lower case */
 	std::string fname;
-	fname.resize(field_name.size() + 1, '\0');
+	fname.resize(field_name.size(), '\0');
 	for (size_t i = 0; i < field_name.size(); ++i)
 		fname[i] = tolower(field_name[i]);
 	switch (htype)
@@ -236,9 +236,12 @@ const std::stringstream& Response::get()
 		/* HTTP version */
 		raw_ << "HTTP/" << version_.major() << "." << version_.minor() << " ";
 		/* Status Code */
-		raw_ << status_.get_code() << " ";
-		/* Reason Phrase */
-		raw_ << status_.get_reason_phrase();
+		raw_ << status_.get_code();
+		if (status_.get_reason_phrase().size())
+		{
+			/* Reason Phrase */
+			raw_ << " " << status_.get_reason_phrase();
+		}
 		/* CRLF */
 		raw_ << "\r\n";
 
