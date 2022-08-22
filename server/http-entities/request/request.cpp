@@ -52,7 +52,7 @@ void Request::dump() const
 {
 	std::cout << "\tRequest Line:" << std::endl;
 	std::cout << "Method: " << request_line().method().get_name() << std::endl;
-	std::cout << "HttpVersion: " << request_line().version().major() << "." << request_line().version().minor() << std::endl;
+	std::cout << "HttpVersion: " << request_line().version().version_major() << "." << request_line().version().version_minor() << std::endl;
 	std::cout << "URI: " << request_line().uri().get() << std::endl;
 	std::cout << "Resource location: " << request_line().uri().get_resource_path() << std::endl;
 	std::cout << std::endl;

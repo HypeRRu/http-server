@@ -60,12 +60,12 @@ const float HttpVersion::get() const
 	return version_;
 }
 
-const int HttpVersion::major() const
+const int HttpVersion::version_major() const
 {
 	return major_;
 }
 
-const int HttpVersion::minor() const
+const int HttpVersion::version_minor() const
 {
 	return minor_;
 }

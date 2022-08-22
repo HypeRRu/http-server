@@ -13,8 +13,8 @@ namespace http
 		void update(float version);
 
 		const float get() const;
-		const int major() const;
-		const int minor() const;
+		const int version_major() const;
+		const int version_minor() const;
 	protected:
 		void parse_string(const char* version);
 		void init_version();

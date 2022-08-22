@@ -9,7 +9,7 @@ RequestLine::RequestLine(char* request_line_raw):
 	version_(parser_.get_http_version_name()),
 	format_(RequestFormat::FullRequest)
 {
-	if (version_.major() < 1)
+	if (version_.version_major() < 1)
 		format_ = RequestFormat::SimpleRequest;
 }
 

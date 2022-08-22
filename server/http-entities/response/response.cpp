@@ -230,11 +230,11 @@ const std::stringstream& Response::get()
 
 	raw_.str("");
 	/* if version is less than 1.0, no status line and headers provided */
-	if (version_.major() >= 1)
+	if (version_.version_major() >= 1)
 	{
 		/* Status Line */
 		/* HTTP version */
-		raw_ << "HTTP/" << version_.major() << "." << version_.minor() << " ";
+		raw_ << "HTTP/" << version_.version_major() << "." << version_.version_minor() << " ";
 		/* Status Code */
 		raw_ << status_.get_code();
 		if (status_.get_reason_phrase().size())
