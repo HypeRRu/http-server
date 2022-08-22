@@ -52,7 +52,6 @@ int main(int argc, char *argv[])
 			chdir("/");
 		}
 	}
-	std::cout << "Is valid: " << server.is_valid() << std::endl;
 	/* start accepting connections */
 	server.accept_connections();
 	return 0;

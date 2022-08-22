@@ -155,10 +155,8 @@ void Server::accept_connections()
 	}
 }
 
-#include <iostream>
 bool Server::handle_connection(int slave_socket)
 {
-	std::cout << "handle start" << std::endl;
 	size_t buffer_size = 256;
 	std::stringstream request_stream;
 	char buffer[buffer_size + 1];
@@ -206,7 +204,6 @@ bool Server::handle_connection(int slave_socket)
 	/* close connection */
 	::shutdown(slave_socket, SHUT_RDWR);
 	close(slave_socket);
-	std::cout << "handle end" << std::endl;
 	return true;
 }
 
